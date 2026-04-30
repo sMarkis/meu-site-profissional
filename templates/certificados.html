@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificações - André</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.7">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.2">
 </head>
 <body>
 
-    <!-- Botão com ID para o JavaScript encontrar mais fácil -->
+    <!-- Botão de Menu para Celular -->
     <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
     </button>
 
-    <nav class="sidebar">
+    <!-- Menu Lateral (Sidebar) -->
+    <nav class="sidebar" id="mySidebar">
         <ul>
             <a href="/">
                 <li>
-                    <span class="icon"><i class="fas fa-arrow-left"></i></span>
-                    <span class="text">Voltar</span>
+                    <span class="icon"><i class="fas fa-house"></i></span>
+                    <span class="text">Início</span>
+                </li>
+            </a>
+            <a href="/#servicos">
+                <li>
+                    <span class="icon"><i class="fas fa-briefcase"></i></span>
+                    <span class="text">Serviços</span>
+                </li>
+            </a>
+            <a href="/certificados">
+                <li>
+                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="text">Certificações</span>
+                </li>
+            </a>
+            <a href="/links">
+                <li>
+                    <span class="icon"><i class="fas fa-link"></i></span>
+                    <span class="text">Meus Links</span>
                 </li>
             </a>
             <a href="{{ whatsapp }}" target="_blank">
@@ -32,58 +51,37 @@
     </nav>
 
     <main class="content">
-        <h1>Minhas Certificações</h1>
-        <p>Clique em um certificado para visualizá-lo em tamanho real.</p>
-
-        <div class="card-container">
-            {% for cert in lista %}
-            <div class="card">
-                <h3>{{ cert.titulo }}</h3>
-                <p>{{ cert.info }}</p>
-                <div class="cert-img-container">
-                    <img src="{{ url_for('static', filename='img/' + cert.arquivo) }}" 
-                         alt="{{ cert.titulo }}" 
-                         class="cert-img"
-                         onclick="expandirImagem(this)"
-                         onerror="this.src='https://via.placeholder.com/400x250?text=Imagem+Não+Encontrada'">
+        <section>
+            <h1>Minhas Certificações</h1>
+            <p>Aprimoramento contínuo em tecnologia e gestão pública.</p>
+            
+            <div class="card-container">
+                <!-- Exemplo de Card de Certificado -->
+                <div class="card">
+                    <h3>Python para Automação</h3>
+                    <p>Especialização em scripts RPA e manipulação de dados.</p>
                 </div>
+                <!-- Adicione mais conforme desejar -->
             </div>
-            {% endfor %}
-        </div>
-    </main>
+        </section>
 
-    <!-- Estrutura do Modal para expansão da imagem -->
-    <div id="modal-imagem" class="modal-overlay" onclick="fecharImagem()">
-        <span class="modal-fechar">&times;</span>
-        <img class="modal-img-expandida" id="img-foco">
-        <div id="modal-legenda"></div>
-    </div>
+        <footer>
+            <p>&copy; 2026 André Soluções Administrativas.</p>
+        </footer>
+    </main>
 
     <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Script para controlar a expansão -->
     <script>
-        function expandirImagem(elemento) {
-            const modal = document.getElementById("modal-imagem");
-            const imgFoco = document.getElementById("img-foco");
-            const legenda = document.getElementById("modal-legenda");
-            
-            modal.style.display = "flex";
-            imgFoco.src = elemento.src;
-            legenda.innerHTML = elemento.alt;
-        }
-
-        function fecharImagem() {
-            document.getElementById("modal-imagem").style.display = "none";
-        }
-
-        // Fechar também se apertar a tecla Esc
-        document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") fecharImagem();
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('btnMenu');
+            const sidebar = document.getElementById('mySidebar');
+            btn.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
         });
     </script>
-
 </body>
 </html>
