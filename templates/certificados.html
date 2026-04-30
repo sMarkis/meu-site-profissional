@@ -4,83 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>André - Certificações</title>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- CSS Principal -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4.0">
 </head>
 <body>
 
-    <!-- Botão de Menu (Hambúrguer) -->
     <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Menu Lateral (Sidebar) -->
     <nav class="sidebar" id="mySidebar">
         <ul>
-            <a href="/">
-                <li>
-                    <span class="icon"><i class="fas fa-house"></i></span>
-                    <span class="text">Início</span>
-                </li>
-            </a>
-            <a href="/#servicos">
-                <li>
-                    <span class="icon"><i class="fas fa-briefcase"></i></span>
-                    <span class="text">Serviços</span>
-                </li>
-            </a>
-            <a href="/certificados">
-                <li>
-                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
-                    <span class="text">Certificações</span>
-                </li>
-            </a>
-            <a href="/links">
-                <li>
-                    <span class="icon"><i class="fas fa-link"></i></span>
-                    <span class="text">Meus Links</span>
-                </li>
-            </a>
-            <a href="{{ whatsapp }}" target="_blank">
-                <li>
-                    <span class="icon"><i class="fab fa-whatsapp"></i></span>
-                    <span class="text">WhatsApp</span>
-                </li>
-            </a>
+            <a href="/"><li><span class="icon"><i class="fas fa-house"></i></span><span class="text">Início</span></li></a>
+            <a href="/#servicos"><li><span class="icon"><i class="fas fa-briefcase"></i></span><span class="text">Serviços</span></li></a>
+            <a href="/certificados"><li><span class="icon"><i class="fas fa-graduation-cap"></i></span><span class="text">Certificações</span></li></a>
+            <a href="/links"><li><span class="icon"><i class="fas fa-link"></i></span><span class="text">Meus Links</span></li></a>
+            <a href="{{ whatsapp }}" target="_blank"><li><span class="icon"><i class="fab fa-whatsapp"></i></span><span class="text">WhatsApp</span></li></a>
         </ul>
     </nav>
 
-    <!-- Conteúdo Principal -->
     <main class="content">
         <section id="certificados">
             <h1>Minhas Certificações</h1>
-            <p>Especializações e cursos concluídos na área de tecnologia e administração.</p>
+            <p>Especializações em tecnologia e gestão.</p>
             
             <div class="card-container">
-                {% for cert in certificados %}
                 <div class="card">
-                    <div class="icon-cert"><i class="fas fa-award"></i></div>
-                    <h3>{{ cert.nome }}</h3>
-                    <p>{{ cert.instituicao }}</p>
-                    <small>{{ cert.ano }}</small>
+                    <i class="fas fa-code" style="font-size: 2rem; color: #3498db; margin-bottom: 15px;"></i>
+                    <h3>Python para RPA</h3>
+                    <p>Automação de processos administrativos e robôs de dados.</p>
                 </div>
-                {% endfor %}
+
+                <div class="card">
+                    <i class="fas fa-database" style="font-size: 2rem; color: #3498db; margin-bottom: 15px;"></i>
+                    <h3>Análise de Dados</h3>
+                    <p>Manipulação de grandes volumes de dados com Pandas e Excel.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-university" style="font-size: 2rem; color: #3498db; margin-bottom: 15px;"></i>
+                    <h3>Gestão Pública</h3>
+                    <p>Conhecimentos avançados em administração direta e tributação.</p>
+                </div>
             </div>
         </section>
 
-        <footer>
-            <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
-        </footer>
+        <footer><p>&copy; 2026 André Soluções Administrativas.</p></footer>
     </main>
 
-    <!-- WhatsApp Flutuante -->
-    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
