@@ -5,74 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>André - Soluções Administrativas</title>
     
-    <!-- Font Awesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Seu CSS Principal -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.1">
 
     <style>
-        /* Estilo rápido para o botão do menu no celular */
+        /* Estilo para o botão do menu no celular */
         .menu-toggle {
             display: none;
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 1000;
+            z-index: 9999; /* Garante que fique em cima de tudo */
             background: #2c3e50;
             color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 12px 15px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            border: none;
         }
 
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
-            .sidebar { left: -250px; transition: 0.3s; }
-            .sidebar.active { left: 0; }
-            .content { margin-left: 0 !important; }
+            .sidebar { 
+                left: -260px !important; 
+                transition: all 0.4s ease; 
+                z-index: 9998;
+            }
+            .sidebar.active { 
+                left: 0 !important; 
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Botão para abrir menu no Celular -->
-    <div class="menu-toggle" onclick="toggleMenu()">
+    <!-- Botão com ID para o JavaScript encontrar mais fácil -->
+    <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
-    </div>
+    </button>
 
-    <!-- Menu Lateral (Sidebar) -->
     <nav class="sidebar" id="mySidebar">
         <ul>
-            <a href="/" onclick="toggleMenu()">
+            <a href="/" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-house"></i></span>
                     <span class="text">Início</span>
                 </li>
             </a>
-
-            <a href="/#servicos" onclick="toggleMenu()">
+            <a href="/#servicos" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-briefcase"></i></span>
                     <span class="text">Serviços</span>
                 </li>
             </a>
-
-            <a href="/certificados" onclick="toggleMenu()">
+            <a href="/certificados" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-graduation-cap"></i></span>
                     <span class="text">Certificações</span>
                 </li>
             </a>
-
-            <a href="/links" onclick="toggleMenu()">
+            <a href="/links" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-link"></i></span>
                     <span class="text">Meus Links</span>
                 </li>
             </a>
-
             <a href="{{ whatsapp }}" target="_blank">
                 <li>
                     <span class="icon"><i class="fab fa-whatsapp"></i></span>
@@ -82,18 +80,14 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo da Página -->
     <main class="content">
-        
         <section id="inicio">
             <h1>André Soluções Administrativas</h1>
             <p>Especialista em organização e automação inteligente com Python.</p>
         </section>
 
-        <!-- Seção de Serviços -->
         <section id="servicos">
             <h2>Meus Serviços</h2>
-            
             <div class="card-container">
                 {% for servico in servicos %}
                 <div class="card">
@@ -104,24 +98,34 @@
             </div>
         </section>
 
-        <!-- Rodapé -->
         <footer>
             <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
         </footer>
-
     </main>
 
-    <!-- Botão Flutuante do WhatsApp -->
     <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Script para abrir/fechar o menu -->
+    <!-- JavaScript Blindado -->
     <script>
-        function toggleMenu() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('btnMenu');
             const sidebar = document.getElementById('mySidebar');
-            sidebar.classList.toggle('active');
-        }
+            const links = document.querySelectorAll('.menu-link');
+
+            // Função para abrir/fechar
+            btn.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+
+            // Fecha o menu ao clicar em qualquer link (importante para celular)
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            });
+        });
     </script>
 
 </body>
