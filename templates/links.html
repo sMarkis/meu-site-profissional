@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Links - André</title>
+    
+    <!-- Font Awesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Seu CSS Principal -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.1">
+</head>
+<body>
+
+    <!-- Menu Lateral (Sidebar) -->
+    <nav class="sidebar">
+        <ul>
+            <a href="/">
+                <li>
+                    <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                    <span class="text">Voltar</span>
+                </li>
+            </a>
+
+            <a href="/certificados">
+                <li>
+                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="text">Certificações</span>
+                </li>
+            </a>
+
+            <a href="{{ whatsapp }}" target="_blank">
+                <li>
+                    <span class="icon"><i class="fab fa-whatsapp"></i></span>
+                    <span class="text">WhatsApp</span>
+                </li>
+            </a>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo da Página -->
+    <main class="content">
+        <h1>Meus Links</h1>
+        <p>Acesse meus repositórios de código, redes sociais e transmissões ao vivo.</p>
+
+        <div class="card-container">
+            {% for link in lista %}
+            <div class="card link-card">
+                <div class="link-icon-header">
+                    <i class="{{ link.icone }}"></i>
+                </div>
+                <h3>{{ link.titulo }}</h3>
+                <p>{{ link.info }}</p>
+                <a href="{{ link.url }}" target="_blank" class="btn-link">Acessar</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP REINSERIDO AQUI -->
+    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>

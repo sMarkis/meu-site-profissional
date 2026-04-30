@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>André - Soluções Administrativas</title>
-    <!-- Ícones oficiais -->
+    
+    <!-- Font Awesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.6">
+    
+    <!-- Seu CSS Principal -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.0">
 </head>
 <body>
 
+    <!-- Menu Lateral (Sidebar) -->
     <nav class="sidebar">
         <ul>
             <a href="/">
@@ -18,18 +22,29 @@
                     <span class="text">Início</span>
                 </li>
             </a>
-            <a href="#servicos">
+
+            <!-- BOTÃO DE SERVIÇOS REINSERIDO AQUI -->
+            <a href="/#servicos">
                 <li>
                     <span class="icon"><i class="fas fa-briefcase"></i></span>
                     <span class="text">Serviços</span>
                 </li>
             </a>
+
             <a href="/certificados">
                 <li>
                     <span class="icon"><i class="fas fa-graduation-cap"></i></span>
                     <span class="text">Certificações</span>
                 </li>
             </a>
+
+            <a href="/links">
+                <li>
+                    <span class="icon"><i class="fas fa-link"></i></span>
+                    <span class="text">Meus Links</span>
+                </li>
+            </a>
+
             <a href="{{ whatsapp }}" target="_blank">
                 <li>
                     <span class="icon"><i class="fab fa-whatsapp"></i></span>
@@ -39,14 +54,18 @@
         </ul>
     </nav>
 
+    <!-- Conteúdo da Página -->
     <main class="content">
+        
         <section id="inicio">
             <h1>André Soluções Administrativas</h1>
             <p>Especialista em organização e automação inteligente com Python.</p>
         </section>
 
+        <!-- Seção de Serviços com o ID correspondente ao menu -->
         <section id="servicos">
             <h2>Meus Serviços</h2>
+            
             <div class="card-container">
                 {% for servico in servicos %}
                 <div class="card">
@@ -57,11 +76,14 @@
             </div>
         </section>
 
+        <!-- Rodapé -->
         <footer>
             <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
         </footer>
+
     </main>
 
+    <!-- Botão Flutuante do WhatsApp -->
     <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>

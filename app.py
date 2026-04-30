@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Link do WhatsApp Centralizado com seu número de Nova Odessa
+# Link do WhatsApp Centralizado
 WHATSAPP_LINK = "https://wa.me/5519983516925?text=Olá%20André,%20vi%20seu%20site%20e%20gostaria%20de%20mais%20informações."
 
 @app.route('/')
@@ -17,25 +17,31 @@ def index():
 
 @app.route('/certificados')
 def certificados():
-    # Liste aqui seus certificados reais. O campo 'arquivo' deve ser o nome da imagem na pasta static/img
     meus_certificados = [
-        {
-            "titulo": "Técnico em Informática", 
-            "info": "Formação técnica profissionalizante completa.",
-            "arquivo": "tecnico_info.png" 
-        },
-        {
-            "titulo": "Python para Automação", 
-            "info": "Especialização em scripts, automação de tarefas e RPA.",
-            "arquivo": "python.jpg"
-        },
-        {
-            "titulo": "Excel Avançado", 
-            "info": "Domínio em fórmulas complexas e tratamento de dados.",
-            "arquivo": "excel.jpg"
-        }
+        {"titulo": "Técnico em Informática", "info": "Formação técnica profissionalizante completa.", "arquivo": "tecnico.jpg"},
+        {"titulo": "Python para Automação", "info": "Especialização em scripts, automação de tarefas e RPA.", "arquivo": "python.jpg"},
+        {"titulo": "Excel Avançado", "info": "Domínio em fórmulas complexas e tratamento de dados.", "arquivo": "excel.jpg"}
     ]
     return render_template('certificados.html', lista=meus_certificados, whatsapp=WHATSAPP_LINK)
+
+@app.route('/links')
+def links():
+    meus_links = [
+        {
+            "titulo": "GitHub", 
+            "info": "Repositórios de scripts Python, RPA e projetos de automação.",
+            "icone": "fab fa-github",
+            "url": "https://github.com/sMarkis"
+        },
+        {
+            "titulo": "Linkedin", 
+            "info": "Conexões profissionais e histórico detalhado de carreira.",
+            "icone": "fab fa-linkedin",
+            "url": "https://linkedin.com/in/seu-perfil"
+        },
+        
+    ]
+    return render_template('links.html', lista=meus_links, whatsapp=WHATSAPP_LINK)
 
 if __name__ == '__main__':
     app.run(debug=True)
