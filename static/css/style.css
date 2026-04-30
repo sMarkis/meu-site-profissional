@@ -1,209 +1,354 @@
-/* =========================================
-   1. CONFIGURAÇÕES GERAIS E RESET
-   ========================================= */
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+/* ============================================================
+   1. RESET E CONFIGURAÇÕES DE CORES (VARIÁVEIS)
+   ============================================================ */
+   html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --azul-menu: #2c3e50;
+    --azul-hover: #34495e;
+    --fundo-creme: #fffacf;
+    --branco-card: #ffffff;
+    --texto-principal: #2c3e50;
+    --texto-secundario: #7f8c8d;
+    --whatsapp-verde: #25d366;
+    --sombra-padrao: 0 4px 15px rgba(0,0,0,0.1);
+    --sombra-hover: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 body {
-    background-color: #f0f2f5;
-    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--fundo-creme);
+    color: var(--texto-principal);
     display: flex;
     min-height: 100vh;
-    overflow-x: hidden; /* Evita que o site balance para os lados no celular */
 }
 
-/* =========================================
-   2. SIDEBAR (MENU LATERAL)
-   ========================================= */
+/* ============================================================
+   2. BARRA LATERAL DE NAVEGAÇÃO (SIDEBAR)
+   ============================================================ */
 .sidebar {
-    width: 260px;
+    width: 60px;
     height: 100vh;
-    background: #1e272e;
-    color: #ffffff;
+    background-color: var(--azul-menu);
     position: fixed;
-    top: 0;
     left: 0;
-    padding-top: 20px;
-    transition: all 0.3s ease-in-out;
-    z-index: 999; /* Fica abaixo apenas do botão de fechar no mobile */
+    top: 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s ease; /* Ajustado */
+    overflow: hidden;
+    color: white;
+    z-index: 1000;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+}
+
+/* Expansão no Desktop */
+.sidebar:hover {
+    width: 250px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 0;
+    padding: 20px 0;
+    margin: 0;
 }
 
-.sidebar ul a {
-    text-decoration: none;
-    color: #d1d8e0;
-    display: block;
-    transition: 0.2s;
-}
-
-.sidebar ul li {
-    padding: 18px 25px;
+.sidebar li {
+    height: 60px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.sidebar ul li:hover {
-    background: #485460;
-    color: #ffffff;
+.sidebar li:hover {
+    background-color: var(--azul-hover);
 }
 
-.sidebar ul li .icon {
-    margin-right: 15px;
-    font-size: 1.2rem;
-    width: 30px;
-    text-align: center;
+.sidebar li span.icon {
+    width: 60px;
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
 }
 
-.sidebar ul li .text {
-    font-size: 1rem;
+.sidebar li span.text {
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     font-weight: 500;
 }
 
-/* =========================================
-   3. CONTEÚDO PRINCIPAL
-   ========================================= */
-.content {
-    margin-left: 260px; /* Recuo para a sidebar no PC */
-    padding: 40px;
-    flex: 1;
-    transition: all 0.3s ease;
+.sidebar:hover li span.text {
+    opacity: 1;
 }
 
-section {
-    margin-bottom: 60px;
-    max-width: 1000px;
+/* ============================================================
+   3. BOTÃO MENU MOBILE (HAMBÚRGUER) - NOVO
+   ============================================================ */
+.menu-toggle {
+    display: none; /* Escondido no PC */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background-color: var(--azul-menu);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--sombra-padrao);
+}
+
+/* ============================================================
+   4. CONTEÚDO PRINCIPAL
+   ============================================================ */
+.content {
+    margin-left: 60px;
+    padding: 60px 50px;
+    flex: 1;
+    max-width: 1200px;
+    transition: margin-left 0.3s ease;
 }
 
 h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
+    font-size: 2.8rem;
     margin-bottom: 10px;
+    color: var(--azul-menu);
+    letter-spacing: -1px;
 }
 
 h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--azul-menu);
+    display: inline-block;
+    padding-bottom: 5px;
     font-size: 1.8rem;
-    border-left: 5px solid #3498db;
-    padding-left: 15px;
-    margin-bottom: 30px;
 }
 
-/* =========================================
-   4. CARDS DE SERVIÇOS
-   ========================================= */
+p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* ============================================================
+   5. CARDS (ESTRUTURA BASE)
+   ============================================================ */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
 }
 
 .card {
-    background: #ffffff;
+    background-color: var(--branco-card);
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    border-top: 4px solid transparent;
+    border-radius: 15px;
+    box-shadow: var(--sombra-padrao);
+    border-top: 6px solid var(--azul-menu);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    border-top-color: #3498db;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    box-shadow: var(--sombra-hover);
 }
 
 .card h3 {
+    margin-top: 0;
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: var(--azul-menu);
+    font-size: 1.4rem;
 }
 
-.card p {
-    color: #57606f;
-    line-height: 1.6;
+/* ============================================================
+   6. CERTIFICADOS E MODAL (MANTIDOS)
+   ============================================================ */
+.cert-img-container {
+    margin-top: 15px;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* =========================================
-   5. BOTÕES E ELEMENTOS FLUTUANTES
-   ========================================= */
-.menu-toggle {
-    display: none; /* Escondido no PC */
+.cert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.5s ease;
 }
 
+.card:hover .cert-img {
+    transform: scale(1.08);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: zoom-out;
+}
+
+.modal-img-expandida {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    animation: zoomIn 0.3s ease;
+}
+
+#modal-legenda {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ============================================================
+   7. ABA DE LINKS PROFISSIONAIS (MANTIDO)
+   ============================================================ */
+.link-card {
+    text-align: center;
+    align-items: center;
+}
+
+.link-icon-header {
+    font-size: 3.5rem;
+    color: var(--azul-menu);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.link-card:hover .link-icon-header {
+    transform: translateY(-5px);
+}
+
+.btn-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--azul-menu);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: auto;
+    transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+    background-color: var(--azul-hover);
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   8. WHATSAPP FLUTUANTE
+   ============================================================ */
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366;
-    color: white;
     width: 65px;
     height: 65px;
-    border-radius: 50%;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--whatsapp-verde);
+    color: #FFF;
+    border-radius: 50px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 35px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    z-index: 2000;
+    justify-content: center;
+    font-size: 38px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     text-decoration: none;
-    transition: 0.3s;
+    z-index: 1001;
+    transition: all 0.3s ease;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
-
-/* =========================================
-   6. RESPONSIVIDADE (CELULAR)
-   ========================================= */
+/* ============================================================
+   9. AJUSTES PARA CELULAR (CRUCIAL)
+   ============================================================ */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block; /* Aparece no celular */
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 2001; /* Fica acima de TUDO */
-        background: #1e272e;
-        color: white;
-        padding: 12px 18px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        display: block; /* Botão aparece no celular */
     }
 
     .sidebar {
-        left: -270px; /* Esconde totalmente */
-        width: 260px;
-        position: fixed;
-        box-shadow: none;
+        width: 250px;
+        left: -250px; /* Esconde o menu para a esquerda */
     }
 
-    /* ESSA É A CLASSE QUE O JS VAI ATIVAR */
+    /* Classe que o JavaScript ativa ao clicar */
     .sidebar.active {
-        left: 0 !important;
-        box-shadow: 10px 0 30px rgba(0,0,0,0.4);
+        left: 0;
+    }
+
+    /* Ajuste para os textos aparecerem sempre no celular quando aberto */
+    .sidebar.active li span.text {
+        opacity: 1;
     }
 
     .content {
-        margin-left: 0 !important;
-        padding: 90px 20px 40px 20px; /* Espaço para não bater no botão */
+        margin-left: 0;
+        padding: 80px 20px 40px 20px; /* Espaço para o botão no topo */
     }
 
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
+    h1 {
+        font-size: 2.2rem;
+    }
 }
 
+/* ============================================================
+   10. RODAPÉ E ANIMAÇÕES
+   ============================================================ */
 footer {
-    padding: 20px;
+    margin-top: 80px;
     text-align: center;
-    color: #a4b0be;
-    font-size: 0.85rem;
+    padding: 30px 0;
+    color: var(--texto-secundario);
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); }
+    to { transform: scale(1); }
 }

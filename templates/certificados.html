@@ -3,65 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>André - Certificações</title>
+    <title>Certificações - André</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.7">
 </head>
 <body>
 
+    <!-- BOTÃO DO MENU ADICIONADO AQUI -->
     <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
     </button>
 
+    <!-- SIDEBAR COM O ID 'mySidebar' ADICIONADO -->
     <nav class="sidebar" id="mySidebar">
         <ul>
-            <a href="/"><li><span class="icon"><i class="fas fa-house"></i></span><span class="text">Início</span></li></a>
-            <a href="/#servicos"><li><span class="icon"><i class="fas fa-briefcase"></i></span><span class="text">Serviços</span></li></a>
-            <a href="/certificados"><li><span class="icon"><i class="fas fa-graduation-cap"></i></span><span class="text">Certificações</span></li></a>
-            <a href="/links"><li><span class="icon"><i class="fas fa-link"></i></span><span class="text">Meus Links</span></li></a>
-            <a href="{{ whatsapp }}" target="_blank"><li><span class="icon"><i class="fab fa-whatsapp"></i></span><span class="text">WhatsApp</span></li></a>
+            <a href="/">
+                <li>
+                    <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                    <span class="text">Voltar</span>
+                </li>
+            </a>
+            <a href="{{ whatsapp }}" target="_blank">
+                <li>
+                    <span class="icon"><i class="fab fa-whatsapp"></i></span>
+                    <span class="text">WhatsApp</span>
+                </li>
+            </a>
         </ul>
     </nav>
 
     <main class="content">
-        <section id="certificados">
-            <h1>Minhas Certificações</h1>
-            <p>Especializações em tecnologia e gestão.</p>
-            
-            <div class="card-container">
-                <div class="card">
-                    <i class="fas fa-code" style="font-size: 2rem; color: #3498db; margin-bottom: 15px;"></i>
-                    <h3>Python para RPA</h3>
-                    <p>Automação de processos administrativos e robôs de dados.</p>
-                </div>
+        <h1>Minhas Certificações</h1>
+        <p>Clique em um certificado para visualizá-lo em tamanho real.</p>
 
-                <div class="card">
-                    <i class="fas fa-database" style="font-size: 2rem; color: #3498db; margin-bottom: 15px;"></i>
-                    <h3>Análise de Dados</h3>
-                    <p>Manipulação de grandes volumes de dados com Pandas e Excel.</p>
-                </div>
-
-                <div class="card">
-                    <i class="fas fa-university" style="font-size: 2rem; color: #3498db; margin-bottom: 15px;"></i>
-                    <h3>Gestão Pública</h3>
-                    <p>Conhecimentos avançados em administração direta e tributação.</p>
+        <div class="card-container">
+            {% for cert in lista %}
+            <div class="card">
+                <h3>{{ cert.titulo }}</h3>
+                <p>{{ cert.info }}</p>
+                <div class="cert-img-container">
+                    <img src="{{ url_for('static', filename='img/' + cert.arquivo) }}" 
+                         alt="{{ cert.titulo }}" 
+                         class="cert-img"
+                         onclick="expandirImagem(this)"
+                         onerror="this.src='https://via.placeholder.com/400x250?text=Imagem+Não+Encontrada'">
                 </div>
             </div>
-        </section>
-
-        <footer><p>&copy; 2026 André Soluções Administrativas.</p></footer>
+            {% endfor %}
+        </div>
     </main>
 
-    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- Estrutura do Modal para expansão da imagem (MANTIDA) -->
+    <div id="modal-imagem" class="modal-overlay" onclick="fecharImagem()">
+        <span class="modal-fechar">&times;</span>
+        <img class="modal-img-expandida" id="img-foco">
+        <div id="modal-legenda"></div>
+    </div>
 
+    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS (Modal original + Controle do Menu) -->
     <script>
+        // Funções originais das imagens (MANTIDAS)
+        function expandirImagem(elemento) {
+            const modal = document.getElementById("modal-imagem");
+            const imgFoco = document.getElementById("img-foco");
+            const legenda = document.getElementById("modal-legenda");
+            
+            modal.style.display = "flex";
+            imgFoco.src = elemento.src;
+            legenda.innerHTML = elemento.alt;
+        }
+
+        function fecharImagem() {
+            document.getElementById("modal-imagem").style.display = "none";
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") fecharImagem();
+        });
+
+        // Lógica do Menu Mobile (ADICIONADA)
         document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('btnMenu');
             const sidebar = document.getElementById('mySidebar');
-            btn.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-            });
+
+            if (btn && sidebar) {
+                btn.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                });
+            }
         });
     </script>
+
 </body>
 </html>

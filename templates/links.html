@@ -3,71 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>André - Meus Links</title>
+    <title>Meus Links - André</title>
+    
+    <!-- Font Awesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4.0">
+    
+    <!-- Seu CSS Principal -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.1">
 </head>
 <body>
 
+    <!-- Botão com ID para o JavaScript encontrar mais fácil -->
     <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
     </button>
 
+    <!-- Menu Lateral (Sidebar) - ADICIONADO ID AQUI -->
     <nav class="sidebar" id="mySidebar">
         <ul>
-            <a href="/"><li><span class="icon"><i class="fas fa-house"></i></span><span class="text">Início</span></li></a>
-            <a href="/#servicos"><li><span class="icon"><i class="fas fa-briefcase"></i></span><span class="text">Serviços</span></li></a>
-            <a href="/certificados"><li><span class="icon"><i class="fas fa-graduation-cap"></i></span><span class="text">Certificações</span></li></a>
-            <a href="/links"><li><span class="icon"><i class="fas fa-link"></i></span><span class="text">Meus Links</span></li></a>
-            <a href="{{ whatsapp }}" target="_blank"><li><span class="icon"><i class="fab fa-whatsapp"></i></span><span class="text">WhatsApp</span></li></a>
+            <a href="/">
+                <li>
+                    <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                    <span class="text">Voltar</span>
+                </li>
+            </a>
+
+            <a href="/certificados">
+                <li>
+                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="text">Certificações</span>
+                </li>
+            </a>
+
+            <a href="{{ whatsapp }}" target="_blank">
+                <li>
+                    <span class="icon"><i class="fab fa-whatsapp"></i></span>
+                    <span class="text">WhatsApp</span>
+                </li>
+            </a>
         </ul>
     </nav>
 
+    <!-- Conteúdo da Página -->
     <main class="content">
-        <section id="links">
-            <h1>Meus Links</h1>
-            <p>Conecte-se comigo através das redes sociais e portfólio.</p>
-            
-            <div class="card-container">
-                <a href="https://github.com/SeuUsuario" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="card">
-                        <i class="fab fa-github" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
-                        <h3>GitHub</h3>
-                        <p>Acesse meus repositórios e projetos Python.</p>
-                    </div>
-                </a>
+        <h1>Meus Links</h1>
+        <p>Acesse meus repositórios de código, redes sociais e transmissões ao vivo.</p>
 
-                <a href="https://twitch.tv" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="card">
-                        <i class="fab fa-twitch" style="font-size: 2.5rem; color: #9146ff; margin-bottom: 15px;"></i>
-                        <h3>Twitch / Kick</h3>
-                        <p>Acompanhe minhas lives de games e desenvolvimento.</p>
-                    </div>
-                </a>
-
-                <a href="https://tiktok.com" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="card">
-                        <i class="fab fa-tiktok" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
-                        <h3>TikTok / YouTube</h3>
-                        <p>Vídeos curtos e tutoriais sobre tecnologia.</p>
-                    </div>
-                </a>
+        <div class="card-container">
+            {% for link in lista %}
+            <div class="card link-card">
+                <div class="link-icon-header">
+                    <i class="{{ link.icone }}"></i>
+                </div>
+                <h3>{{ link.titulo }}</h3>
+                <p>{{ link.info }}</p>
+                <a href="{{ link.url }}" target="_blank" class="btn-link">Acessar</a>
             </div>
-        </section>
+            {% endfor %}
+        </div>
 
-        <footer><p>&copy; 2026 André Soluções Administrativas.</p></footer>
+        <!-- Rodapé -->
+        <footer>
+            <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
+        </footer>
     </main>
 
-    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP REINSERIDO AQUI -->
+    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
+    <!-- SCRIPT ADICIONADO PARA FUNCIONAR O CLIQUE -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('btnMenu');
             const sidebar = document.getElementById('mySidebar');
-            btn.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-            });
+
+            if (btn && sidebar) {
+                btn.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                });
+            }
         });
     </script>
+
 </body>
 </html>
