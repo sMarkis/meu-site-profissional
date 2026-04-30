@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificações - André</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.7">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <ul>
+            <a href="/">
+                <li>
+                    <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                    <span class="text">Voltar</span>
+                </li>
+            </a>
+            <a href="{{ whatsapp }}" target="_blank">
+                <li>
+                    <span class="icon"><i class="fab fa-whatsapp"></i></span>
+                    <span class="text">WhatsApp</span>
+                </li>
+            </a>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h1>Minhas Certificações</h1>
+        <p>Clique em um certificado para visualizá-lo em tamanho real.</p>
+
+        <div class="card-container">
+            {% for cert in lista %}
+            <div class="card">
+                <h3>{{ cert.titulo }}</h3>
+                <p>{{ cert.info }}</p>
+                <div class="cert-img-container">
+                    <img src="{{ url_for('static', filename='img/' + cert.arquivo) }}" 
+                         alt="{{ cert.titulo }}" 
+                         class="cert-img"
+                         onclick="expandirImagem(this)"
+                         onerror="this.src='https://via.placeholder.com/400x250?text=Imagem+Não+Encontrada'">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Estrutura do Modal para expansão da imagem -->
+    <div id="modal-imagem" class="modal-overlay" onclick="fecharImagem()">
+        <span class="modal-fechar">&times;</span>
+        <img class="modal-img-expandida" id="img-foco">
+        <div id="modal-legenda"></div>
+    </div>
+
+    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Script para controlar a expansão -->
+    <script>
+        function expandirImagem(elemento) {
+            const modal = document.getElementById("modal-imagem");
+            const imgFoco = document.getElementById("img-foco");
+            const legenda = document.getElementById("modal-legenda");
+            
+            modal.style.display = "flex";
+            imgFoco.src = elemento.src;
+            legenda.innerHTML = elemento.alt;
+        }
+
+        function fecharImagem() {
+            document.getElementById("modal-imagem").style.display = "none";
+        }
+
+        // Fechar também se apertar a tecla Esc
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") fecharImagem();
+        });
+    </script>
+
+</body>
+</html>

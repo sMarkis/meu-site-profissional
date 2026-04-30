@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>André - Soluções Administrativas</title>
+    <!-- Ícones oficiais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.6">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <ul>
+            <a href="/">
+                <li>
+                    <span class="icon"><i class="fas fa-house"></i></span>
+                    <span class="text">Início</span>
+                </li>
+            </a>
+            <a href="#servicos">
+                <li>
+                    <span class="icon"><i class="fas fa-briefcase"></i></span>
+                    <span class="text">Serviços</span>
+                </li>
+            </a>
+            <a href="/certificados">
+                <li>
+                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="text">Certificações</span>
+                </li>
+            </a>
+            <a href="{{ whatsapp }}" target="_blank">
+                <li>
+                    <span class="icon"><i class="fab fa-whatsapp"></i></span>
+                    <span class="text">WhatsApp</span>
+                </li>
+            </a>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="inicio">
+            <h1>André Soluções Administrativas</h1>
+            <p>Especialista em organização e automação inteligente com Python.</p>
+        </section>
+
+        <section id="servicos">
+            <h2>Meus Serviços</h2>
+            <div class="card-container">
+                {% for servico in servicos %}
+                <div class="card">
+                    <h3>{{ servico.titulo }}</h3>
+                    <p>{{ servico.desc }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+    <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
