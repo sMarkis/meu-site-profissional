@@ -1,339 +1,209 @@
-/* ============================================================
-   1. RESET E CONFIGURAÇÕES DE CORES (VARIÁVEIS)
-   ============================================================ */
-   html {
-    scroll-behavior: smooth;
-}
-
-:root {
-    --azul-menu: #2c3e50;
-    --azul-hover: #34495e;
-    --fundo-creme: #fffacf;
-    --branco-card: #ffffff;
-    --texto-principal: #2c3e50;
-    --texto-secundario: #7f8c8d;
-    --whatsapp-verde: #25d366;
-    --sombra-padrao: 0 4px 15px rgba(0,0,0,0.1);
-    --sombra-hover: 0 8px 25px rgba(0,0,0,0.15);
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS E RESET
+   ========================================= */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--fundo-creme);
-    color: var(--texto-principal);
+    background-color: #f0f2f5;
+    color: #1a1a1a;
     display: flex;
     min-height: 100vh;
+    overflow-x: hidden; /* Evita que o site balance para os lados no celular */
 }
 
-/* ============================================================
-   2. BARRA LATERAL DE NAVEGAÇÃO (SIDEBAR)
-   ============================================================ */
+/* =========================================
+   2. SIDEBAR (MENU LATERAL)
+   ========================================= */
 .sidebar {
-    width: 60px;
+    width: 260px;
     height: 100vh;
-    background-color: var(--azul-menu);
+    background: #1e272e;
+    color: #ffffff;
     position: fixed;
-    left: 0;
     top: 0;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-    color: white;
-    z-index: 1000;
-    box-shadow: 3px 0 10px rgba(0,0,0,0.2);
-}
-
-/* Quando o mouse passa na barra, ela expande */
-.sidebar:hover {
-    width: 250px;
-}
-
-.sidebar a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    left: 0;
+    padding-top: 20px;
+    transition: all 0.3s ease-in-out;
+    z-index: 999; /* Fica abaixo apenas do botão de fechar no mobile */
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 20px 0;
-    margin: 0;
+    padding: 0;
 }
 
-.sidebar li {
-    height: 60px;
+.sidebar ul a {
+    text-decoration: none;
+    color: #d1d8e0;
+    display: block;
+    transition: 0.2s;
+}
+
+.sidebar ul li {
+    padding: 18px 25px;
     display: flex;
     align-items: center;
-    transition: background 0.2s ease;
-    cursor: pointer;
-    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.sidebar li:hover {
-    background-color: var(--azul-hover);
+.sidebar ul li:hover {
+    background: #485460;
+    color: #ffffff;
 }
 
-/* Estilo do Ícone no Menu */
-.sidebar li span.icon {
-    width: 60px;
-    min-width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
+.sidebar ul li .icon {
+    margin-right: 15px;
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
 }
 
-/* Estilo do Texto no Menu (fica invisível até o hover) */
-.sidebar li span.text {
-    margin-left: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.sidebar ul li .text {
+    font-size: 1rem;
     font-weight: 500;
 }
 
-.sidebar:hover li span.text {
-    opacity: 1;
+/* =========================================
+   3. CONTEÚDO PRINCIPAL
+   ========================================= */
+.content {
+    margin-left: 260px; /* Recuo para a sidebar no PC */
+    padding: 40px;
+    flex: 1;
+    transition: all 0.3s ease;
 }
 
-/* ============================================================
-   3. CONTEÚDO PRINCIPAL (ÁREA DE TEXTO E CARDS)
-   ============================================================ */
-.content {
-    margin-left: 60px;
-    padding: 60px 50px;
-    flex: 1;
-    max-width: 1200px;
-    transition: margin-left 0.3s ease;
+section {
+    margin-bottom: 60px;
+    max-width: 1000px;
 }
 
 h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
+    color: #2c3e50;
     margin-bottom: 10px;
-    color: var(--azul-menu);
-    letter-spacing: -1px;
 }
 
 h2 {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-bottom: 3px solid var(--azul-menu);
-    display: inline-block;
-    padding-bottom: 5px;
     font-size: 1.8rem;
+    border-left: 5px solid #3498db;
+    padding-left: 15px;
+    margin-bottom: 30px;
 }
 
-p {
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-/* ============================================================
-   4. CARDS (ESTRUTURA BASE)
-   ============================================================ */
+/* =========================================
+   4. CARDS DE SERVIÇOS
+   ========================================= */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .card {
-    background-color: var(--branco-card);
+    background: #ffffff;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: var(--sombra-padrao);
-    border-top: 6px solid var(--azul-menu);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-top: 4px solid transparent;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: var(--sombra-hover);
+    border-top-color: #3498db;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 .card h3 {
-    margin-top: 0;
     margin-bottom: 15px;
-    color: var(--azul-menu);
-    font-size: 1.4rem;
+    color: #2c3e50;
 }
 
-/* ============================================================
-   5. CERTIFICADOS (MINIATURAS)
-   ============================================================ */
-.cert-img-container {
-    margin-top: 15px;
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #eee;
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.card p {
+    color: #57606f;
+    line-height: 1.6;
 }
 
-.cert-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    cursor: zoom-in;
-    transition: transform 0.5s ease;
+/* =========================================
+   5. BOTÕES E ELEMENTOS FLUTUANTES
+   ========================================= */
+.menu-toggle {
+    display: none; /* Escondido no PC */
 }
 
-.card:hover .cert-img {
-    transform: scale(1.08);
-}
-
-/* ============================================================
-   6. MODAL (EFEITO DE EXPANDIR IMAGEM)
-   ============================================================ */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    cursor: zoom-out;
-}
-
-.modal-img-expandida {
-    max-width: 90%;
-    max-height: 85%;
-    border-radius: 4px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.2);
-    animation: zoomIn 0.3s ease;
-}
-
-#modal-legenda {
-    margin-top: 20px;
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.modal-fechar {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 50px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* ============================================================
-   7. ABA DE LINKS PROFISSIONAIS
-   ============================================================ */
-.link-card {
-    text-align: center;
-    align-items: center;
-}
-
-.link-icon-header {
-    font-size: 3.5rem;
-    color: var(--azul-menu);
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-.link-card:hover .link-icon-header {
-    transform: translateY(-5px);
-}
-
-.btn-link {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--azul-menu);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    margin-top: auto;
-    transition: all 0.3s ease;
-}
-
-.btn-link:hover {
-    background-color: var(--azul-hover);
-    transform: scale(1.05);
-}
-
-/* ============================================================
-   8. WHATSAPP FLUTUANTE
-   ============================================================ */
 .whatsapp-float {
     position: fixed;
-    width: 65px;
-    height: 65px;
     bottom: 30px;
     right: 30px;
-    background-color: var(--whatsapp-verde);
-    color: #FFF;
-    border-radius: 50px;
+    background-color: #25d366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 38px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    align-items: center;
+    font-size: 35px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
     text-decoration: none;
-    z-index: 1001;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1);
 }
 
-/* ============================================================
-   9. ANIMAÇÕES E RESPONSIVIDADE
-   ============================================================ */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.8); }
-    to { transform: scale(1); }
-}
-
-/* Ajustes para Celular */
+/* =========================================
+   6. RESPONSIVIDADE (CELULAR)
+   ========================================= */
 @media (max-width: 768px) {
-    .content {
-        margin-left: 0;
-        padding: 40px 20px;
+    .menu-toggle {
+        display: block; /* Aparece no celular */
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 2001; /* Fica acima de TUDO */
+        background: #1e272e;
+        color: white;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    
+
     .sidebar {
-        width: 0;
+        left: -270px; /* Esconde totalmente */
+        width: 260px;
+        position: fixed;
+        box-shadow: none;
     }
-    
-    .sidebar:hover {
-        width: 200px;
+
+    /* ESSA É A CLASSE QUE O JS VAI ATIVAR */
+    .sidebar.active {
+        left: 0 !important;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.4);
     }
-    
-    h1 {
-        font-size: 2.2rem;
+
+    .content {
+        margin-left: 0 !important;
+        padding: 90px 20px 40px 20px; /* Espaço para não bater no botão */
     }
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
 }
 
-/* ============================================================
-   10. RODAPÉ (FOOTER)
-   ============================================================ */
 footer {
-    margin-top: 80px;
+    padding: 20px;
     text-align: center;
-    padding: 30px 0;
-    color: var(--texto-secundario);
+    color: #a4b0be;
+    font-size: 0.85rem;
 }
