@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificações - André</title>
+    <title>André - Certificações</title>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.2">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0">
 </head>
 <body>
 
-    <!-- Botão de Menu para Celular -->
+    <!-- Botão de Menu (Hambúrguer) -->
     <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
     </button>
@@ -50,26 +54,30 @@
         </ul>
     </nav>
 
+    <!-- Conteúdo Principal -->
     <main class="content">
-        <section>
+        <section id="certificados">
             <h1>Minhas Certificações</h1>
-            <p>Aprimoramento contínuo em tecnologia e gestão pública.</p>
+            <p>Especializações e cursos concluídos na área de tecnologia e administração.</p>
             
             <div class="card-container">
-                <!-- Exemplo de Card de Certificado -->
+                {% for cert in certificados %}
                 <div class="card">
-                    <h3>Python para Automação</h3>
-                    <p>Especialização em scripts RPA e manipulação de dados.</p>
+                    <div class="icon-cert"><i class="fas fa-award"></i></div>
+                    <h3>{{ cert.nome }}</h3>
+                    <p>{{ cert.instituicao }}</p>
+                    <small>{{ cert.ano }}</small>
                 </div>
-                <!-- Adicione mais conforme desejar -->
+                {% endfor %}
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2026 André Soluções Administrativas.</p>
+            <p>&copy; 2026 André Soluções Administrativas. Todos os direitos reservados.</p>
         </footer>
     </main>
 
+    <!-- WhatsApp Flutuante -->
     <a href="{{ whatsapp }}" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
