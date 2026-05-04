@@ -352,3 +352,101 @@ footer {
     from { transform: scale(0.8); }
     to { transform: scale(1); }
 }
+
+.intro-texto {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    color: #34495e;
+    text-align: left;
+}
+
+.lista-metodologia {
+    list-style: none;
+    padding: 20px 0;
+}
+
+.lista-metodologia li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.lista-metodologia i {
+    color: #27ae60;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* botão como funciona */
+
+/* Efeito de rolagem suave para quando clicar no menu */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Espaçamento e alinhamento da nova seção 'Como Funciona' */
+#metodologia{
+    padding: 60px 20px;
+    background-color: #fffacf; /* Um fundo levemente diferente para destacar */
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.intro-texto {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2c3e50;
+}
+
+/* Estilização da lista de metodologia (Passo a passo) */
+.lista-metodologia {
+    list-style: none;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column; /* Faz os itens ficarem um embaixo do outro */
+    gap: 15px;
+    align-items: flex-start; /* Alinha todos começando da esquerda */
+    max-width: 700px; /* Limita a largura para não esticar demais no seu monitor Ultrawide */
+    margin: 0 auto; /* Mantém o bloco todo centralizado na tela, mas o conteúdo interno à esquerda */
+}
+
+.lista-metodologia li {
+    background: white;
+    padding: 12px 20px;
+    border-radius: 8px; /* Um pouco menos arredondado fica mais profissional */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+    width: 100%; /* Faz todas as caixas terem o mesmo tamanho */
+    text-align: left;
+}
+
+.lista-metodologia i {
+    color: #27ae60 !important;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    min-width: 25px; /* Garante que os ícones fiquem todos alinhados na mesma coluna */
+}
+
+.lista-metodologia i {
+    color: #27ae60; /* Verde para passar ideia de confirmação/sucesso */
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+/* Ajuste para telas de celular */
+@media (max-width: 768px) {
+    .lista-metodologia {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .lista-metodologia li {
+        width: 100%;
+        border-radius: 8px;
+    }
+}

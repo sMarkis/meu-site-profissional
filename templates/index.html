@@ -53,6 +53,15 @@
                     <span class="text">Início</span>
                 </li>
             </a>
+
+            <a href="/#metodologia" class="menu-link">
+                <li>
+                    <span class="icon"><i class="fas fa-gears"></i></span>
+                    <span class="text">Metodologia</span>
+                </li>
+            </a>
+            <a href="/#servicos" class="menu-link">
+
             <a href="/#servicos" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-briefcase"></i></span>
@@ -83,10 +92,32 @@
     <main class="content">
         <section id="inicio">
             <h1>André Soluções Administrativas</h1>
-            <p>Especialista em organização e automação inteligente com Python.</p>
+            <p>Especialista em organização administrativa e otimização de fluxos de trabalho.</p>
         </section>
 
-        <section id="servicos">
+        <section id="metodologia">
+            <h2>Metodologia</h2>
+            <div class="intro-texto">
+                <p>
+                    Meu trabalho é focado na <strong>eficiência operacional</strong>. Eu assumo as rotinas de bastidores da sua empresa ou escritório, organizando dados, documentos e processos digitais para que você tenha mais tempo livre e segurança nas decisões.
+                </p>
+                <ul class="lista-metodologia">
+                    <li><i class="fas fa-check-circle"></i> <strong>Análise:</strong> Identifico gargalos em planilhas e fluxos manuais.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Execução:</strong> Aplico soluções digitais para organizar a informação.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Entrega:</strong> Você recebe relatórios prontos e processos otimizados.</li>
+                    <li><i class="fas fa-microchip"></i> <strong>Tecnologia Própria:</strong> Uso scripts de automação exclusivos para otimizar a execução das tarefas.</li>
+                    <li><i class="fas fa-bolt"></i> <strong>Agilidade Superior:</strong> Minha metodologia interna permite entregas mais rápidas que os métodos manuais tradicionais.</li>
+                    <li><i class="fas fa-shield-alt"></i> <strong>Foco no Resultado:</strong> O cliente recebe o serviço pronto e revisado, com a excelência de um processo automatizado.</li>
+                </ul>
+
+                <p style="font-size: 0.85rem; color: #7f8c8d; margin-top: 15px; font-style: italic;">
+                    *As ferramentas de automação utilizadas são de uso interno e exclusivo, visando a otimização da entrega final.
+                </p>
+
+            </div>
+        </section>
+
+       <section id="servicos">
             <h2>Meus Serviços</h2>
             <div class="card-container">
                 {% for servico in servicos %}
