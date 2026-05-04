@@ -11,6 +11,7 @@ def index():
         
         {"titulo": "Organização de Dados", "desc": "Limpeza e estruturação de planilhas e bancos de dados."},
         {"titulo": "Gestão de Back-Office", "desc": "Padronização de arquivos digitais e suporte interno."},
+        {"titulo": "Digitalização de Documentos", "desc": "Conversão de arquivos físicos para o formato digital organizado, com foco em preservação e facilidade de busca."},
         {"titulo": "Suporte Operacional", "desc": "Relatórios, formatação técnica e controle de prazos."},
         {"titulo": "Automação de Rotinas", "desc": "Transformação de tarefas manuais repetitivas em processos digitais ágeis." },
         {"titulo": "Formatação Técnica", "desc": "Padronização de manuais, propostas e documentos conforme normas profissionais." },
