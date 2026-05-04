@@ -94,7 +94,7 @@ body {
 }
 
 /* ============================================================
-    3. BOTÃO MENU MOBILE (HAMBÚRGUER) - NOVO
+    3. BOTÃO MENU MOBILE (HAMBÚRGUER)
    ============================================================ */
 .menu-toggle {
     display: none;
@@ -110,6 +110,20 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     box-shadow: var(--sombra-padrao);
+}
+
+/* Estilo do botão X (Fechar) */
+.btn-fechar-mobile {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 1200;
 }
 
 /* ============================================================
@@ -178,7 +192,7 @@ p {
 }
 
 /* ============================================================
-    6. CERTIFICADOS E MODAL (MANTIDOS)
+    6. CERTIFICADOS E MODAL
    ============================================================ */
 .cert-img-container {
     margin-top: 15px;
@@ -247,7 +261,7 @@ p {
 }
 
 /* ============================================================
-    7. ABA DE LINKS PROFISSIONAIS (MANTIDO)
+    7. ABA DE LINKS PROFISSIONAIS
    ============================================================ */
 .link-card {
     text-align: center;
@@ -312,6 +326,11 @@ p {
         display: block;
     }
 
+    /* Ajuste para o botão hambúrguer sumir quando o menu abrir */
+    .sidebar.active ~ #btnMenu {
+        display: none !important;
+    }
+
     .sidebar {
         width: 250px;
         left: -250px;
@@ -325,6 +344,11 @@ p {
         opacity: 1;
     }
 
+    /* Mostra o botão X quando a sidebar está ativa */
+    .sidebar.active .btn-fechar-mobile {
+        display: block !important;
+    }
+
     .content {
         margin-left: 0;
         padding: 80px 20px 40px 20px;
@@ -334,26 +358,24 @@ p {
         font-size: 2.2rem;
     }
 
-    /* INÍCIO DA SUBSTITUIÇÃO DA METODOLOGIA NO MOBILE */
     .lista-metodologia {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centraliza as caixas na tela do celular */
+        align-items: center;
         padding: 0;
         margin: 0 auto;
         width: 100%;
     }
     
     .lista-metodologia li {
-        width: 90%; /* Deixa uma margem elegante nas laterais */
-        justify-content: flex-start; /* Mantém o ícone e o texto alinhados à esquerda dentro da caixa */
+        width: 90%;
+        justify-content: flex-start;
         margin-bottom: 15px;
         text-align: left;
-        background: white; /* Garante que o fundo branco apareça no celular */
+        background: white;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         border-radius: 8px;
     }
-    /* FIM DA SUBSTITUIÇÃO DA METODOLOGIA NO MOBILE */
 }
 
 /* ============================================================
@@ -408,27 +430,4 @@ footer {
     margin-right: 15px;
     font-size: 1.2rem;
     min-width: 25px;
-}
-
-/* Estilo do botão X */
-.btn-fechar-mobile {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .sidebar.active .btn-fechar-mobile {
-        display: block;
-    }
-
-    .sidebar.active ~ .menu-toggle {
-        display: none;
-    }
 }
