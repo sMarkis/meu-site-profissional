@@ -142,6 +142,7 @@ h1 {
     margin-bottom: 10px;
     color: var(--azul-menu);
     letter-spacing: -1px;
+    line-height: 1.1;
 }
 
 h2 {
@@ -355,7 +356,8 @@ p {
     }
 
     h1 {
-        font-size: 2.2rem;
+        font-size: 1.8em;
+        line-height: 1.2;
     }
 
     .lista-metodologia {
