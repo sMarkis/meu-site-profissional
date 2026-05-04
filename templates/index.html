@@ -15,7 +15,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 9999; /* Garante que fique em cima de tudo */
+            z-index: 9999; 
             background: #2c3e50;
             color: white;
             padding: 12px 15px;
@@ -25,8 +25,27 @@
             border: none;
         }
 
+        /* Estilo do botão de fechar (X) dentro do menu */
+        .btn-fechar-mobile {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
+            
+            /* Se o menu estiver ativo, o botão hambúrguer some */
+            .sidebar.active ~ .menu-toggle {
+                display: none;
+            }
+
             .sidebar { 
                 left: -260px !important; 
                 transition: all 0.4s ease; 
@@ -35,17 +54,25 @@
             .sidebar.active { 
                 left: 0 !important; 
             }
+            
+            /* O X só aparece no celular quando o menu está aberto */
+            .sidebar.active .btn-fechar-mobile {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Botão com ID para o JavaScript encontrar mais fácil -->
+    <!-- Botão Hambúrguer -->
     <button class="menu-toggle" id="btnMenu">
         <i class="fas fa-bars"></i>
     </button>
 
     <nav class="sidebar" id="mySidebar">
+        <!-- BOTÃO DE FECHAR (X) INCLUÍDO AQUI -->
+        <button class="btn-fechar-mobile" id="btnFechar">&times;</button>
+        
         <ul>
             <a href="/" class="menu-link">
                 <li>
@@ -60,7 +87,6 @@
                     <span class="text">Metodologia</span>
                 </li>
             </a>
-            <a href="/#servicos" class="menu-link">
 
             <a href="/#servicos" class="menu-link">
                 <li>
@@ -68,18 +94,21 @@
                     <span class="text">Serviços</span>
                 </li>
             </a>
+            
             <a href="/certificados" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-graduation-cap"></i></span>
                     <span class="text">Certificações</span>
                 </li>
             </a>
+            
             <a href="/links" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-link"></i></span>
                     <span class="text">Meus Links</span>
                 </li>
             </a>
+            
             <a href="{{ whatsapp }}" target="_blank">
                 <li>
                     <span class="icon"><i class="fab fa-whatsapp"></i></span>
@@ -138,19 +167,25 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JavaScript Blindado -->
+    <!-- JavaScript Atualizado -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('btnMenu');
+            const btnAbrir = document.getElementById('btnMenu');
+            const btnFechar = document.getElementById('btnFechar');
             const sidebar = document.getElementById('mySidebar');
             const links = document.querySelectorAll('.menu-link');
 
-            // Função para abrir/fechar
-            btn.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
+            // Função para abrir
+            btnAbrir.addEventListener('click', function() {
+                sidebar.classList.add('active');
             });
 
-            // Fecha o menu ao clicar em qualquer link (importante para celular)
+            // Função para fechar no X
+            btnFechar.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+            });
+
+            // Fecha o menu ao clicar em qualquer link
             links.forEach(link => {
                 link.addEventListener('click', () => {
                     sidebar.classList.remove('active');

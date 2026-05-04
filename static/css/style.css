@@ -450,4 +450,31 @@ html {
         border-radius: 8px;
     }
 }
+
+/* Estilo do botão X (escondido por padrão no PC) */
+.btn-fechar-mobile {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    /* Quando a sidebar estiver ativa, mostramos o X */
+    .sidebar.active .btn-fechar-mobile {
+        display: block;
+    }
+
+    /* Quando a sidebar estiver ativa, escondemos o botão hambúrguer (menu-toggle) */
+    .sidebar.active ~ .menu-toggle {
+        display: none;
+    }
+}
+
+
 /* fim por hora */
