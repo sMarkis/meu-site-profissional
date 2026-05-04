@@ -1,5 +1,5 @@
 /* ============================================================
-   1. RESET E CONFIGURAÇÕES DE CORES (VARIÁVEIS)
+    1. RESET E CONFIGURAÇÕES DE CORES (VARIÁVEIS)
    ============================================================ */
    html {
     scroll-behavior: smooth;
@@ -28,7 +28,7 @@ body {
 }
 
 /* ============================================================
-   2. BARRA LATERAL DE NAVEGAÇÃO (SIDEBAR)
+    2. BARRA LATERAL DE NAVEGAÇÃO (SIDEBAR)
    ============================================================ */
 .sidebar {
     width: 60px;
@@ -37,14 +37,13 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s ease; /* Ajustado */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s ease;
     overflow: hidden;
     color: white;
     z-index: 1000;
     box-shadow: 3px 0 10px rgba(0,0,0,0.2);
 }
 
-/* Expansão no Desktop */
 .sidebar:hover {
     width: 250px;
 }
@@ -95,10 +94,10 @@ body {
 }
 
 /* ============================================================
-   3. BOTÃO MENU MOBILE (HAMBÚRGUER) - NOVO
+    3. BOTÃO MENU MOBILE (HAMBÚRGUER) - NOVO
    ============================================================ */
 .menu-toggle {
-    display: none; /* Escondido no PC */
+    display: none;
     position: fixed;
     top: 15px;
     left: 15px;
@@ -114,7 +113,7 @@ body {
 }
 
 /* ============================================================
-   4. CONTEÚDO PRINCIPAL
+    4. CONTEÚDO PRINCIPAL
    ============================================================ */
 .content {
     margin-left: 60px;
@@ -146,7 +145,7 @@ p {
 }
 
 /* ============================================================
-   5. CARDS (ESTRUTURA BASE)
+    5. CARDS (ESTRUTURA BASE)
    ============================================================ */
 .card-container {
     display: grid;
@@ -179,7 +178,7 @@ p {
 }
 
 /* ============================================================
-   6. CERTIFICADOS E MODAL (MANTIDOS)
+    6. CERTIFICADOS E MODAL (MANTIDOS)
    ============================================================ */
 .cert-img-container {
     margin-top: 15px;
@@ -248,7 +247,7 @@ p {
 }
 
 /* ============================================================
-   7. ABA DE LINKS PROFISSIONAIS (MANTIDO)
+    7. ABA DE LINKS PROFISSIONAIS (MANTIDO)
    ============================================================ */
 .link-card {
     text-align: center;
@@ -284,7 +283,7 @@ p {
 }
 
 /* ============================================================
-   8. WHATSAPP FLUTUANTE
+    8. WHATSAPP FLUTUANTE
    ============================================================ */
 .whatsapp-float {
     position: fixed;
@@ -306,40 +305,59 @@ p {
 }
 
 /* ============================================================
-   9. AJUSTES PARA CELULAR (CRUCIAL)
+    9. AJUSTES PARA CELULAR (CRUCIAL)
    ============================================================ */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block; /* Botão aparece no celular */
+        display: block;
     }
 
     .sidebar {
         width: 250px;
-        left: -250px; /* Esconde o menu para a esquerda */
+        left: -250px;
     }
 
-    /* Classe que o JavaScript ativa ao clicar */
     .sidebar.active {
         left: 0;
     }
 
-    /* Ajuste para os textos aparecerem sempre no celular quando aberto */
     .sidebar.active li span.text {
         opacity: 1;
     }
 
     .content {
         margin-left: 0;
-        padding: 80px 20px 40px 20px; /* Espaço para o botão no topo */
+        padding: 80px 20px 40px 20px;
     }
 
     h1 {
         font-size: 2.2rem;
     }
+
+    /* INÍCIO DA SUBSTITUIÇÃO DA METODOLOGIA NO MOBILE */
+    .lista-metodologia {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centraliza as caixas na tela do celular */
+        padding: 0;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .lista-metodologia li {
+        width: 90%; /* Deixa uma margem elegante nas laterais */
+        justify-content: flex-start; /* Mantém o ícone e o texto alinhados à esquerda dentro da caixa */
+        margin-bottom: 15px;
+        text-align: left;
+        background: white; /* Garante que o fundo branco apareça no celular */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border-radius: 8px;
+    }
+    /* FIM DA SUBSTITUIÇÃO DA METODOLOGIA NO MOBILE */
 }
 
 /* ============================================================
-   10. RODAPÉ E ANIMAÇÕES
+    10. RODAPÉ E ANIMAÇÕES
    ============================================================ */
 footer {
     margin-top: 80px;
@@ -354,46 +372,6 @@ footer {
 }
 
 .intro-texto {
-    max-width: 800px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
-    color: #34495e;
-    text-align: left;
-}
-
-.lista-metodologia {
-    list-style: none;
-    padding: 20px 0;
-}
-
-.lista-metodologia li {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-}
-
-.lista-metodologia i {
-    color: #27ae60;
-    margin-right: 15px;
-    font-size: 1.2rem;
-}
-
-/* botão como funciona */
-
-/* Efeito de rolagem suave para quando clicar no menu */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Espaçamento e alinhamento da nova seção 'Como Funciona' */
-#metodologia{
-    padding: 60px 20px;
-    background-color: #fffacf; /* Um fundo levemente diferente para destacar */
-    border-radius: 12px;
-    margin: 20px 0;
-}
-
-.intro-texto {
     max-width: 900px;
     margin: 0 auto;
     font-size: 1.1rem;
@@ -401,27 +379,27 @@ html {
     color: #2c3e50;
 }
 
-/* Estilização da lista de metodologia (Passo a passo) */
+/* Estilização da lista de metodologia (Desktop) */
 .lista-metodologia {
     list-style: none;
     padding: 20px 0;
     display: flex;
-    flex-direction: column; /* Faz os itens ficarem um embaixo do outro */
+    flex-direction: column;
     gap: 15px;
-    align-items: flex-start; /* Alinha todos começando da esquerda */
-    max-width: 700px; /* Limita a largura para não esticar demais no seu monitor Ultrawide */
-    margin: 0 auto; /* Mantém o bloco todo centralizado na tela, mas o conteúdo interno à esquerda */
+    align-items: flex-start;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .lista-metodologia li {
     background: white;
     padding: 12px 20px;
-    border-radius: 8px; /* Um pouco menos arredondado fica mais profissional */
+    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
     border: 1px solid #eee;
-    width: 100%; /* Faz todas as caixas terem o mesmo tamanho */
+    width: 100%;
     text-align: left;
 }
 
@@ -429,29 +407,10 @@ html {
     color: #27ae60 !important;
     margin-right: 15px;
     font-size: 1.2rem;
-    min-width: 25px; /* Garante que os ícones fiquem todos alinhados na mesma coluna */
+    min-width: 25px;
 }
 
-.lista-metodologia i {
-    color: #27ae60; /* Verde para passar ideia de confirmação/sucesso */
-    margin-right: 12px;
-    font-size: 1.2rem;
-}
-
-/* Ajuste para telas de celular */
-@media (max-width: 768px) {
-    .lista-metodologia {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .lista-metodologia li {
-        width: 100%;
-        border-radius: 8px;
-    }
-}
-
-/* Estilo do botão X (escondido por padrão no PC) */
+/* Estilo do botão X */
 .btn-fechar-mobile {
     display: none;
     background: none;
@@ -465,16 +424,11 @@ html {
 }
 
 @media (max-width: 768px) {
-    /* Quando a sidebar estiver ativa, mostramos o X */
     .sidebar.active .btn-fechar-mobile {
         display: block;
     }
 
-    /* Quando a sidebar estiver ativa, escondemos o botão hambúrguer (menu-toggle) */
     .sidebar.active ~ .menu-toggle {
         display: none;
     }
 }
-
-
-/* fim por hora */
