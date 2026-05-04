@@ -15,22 +15,45 @@
 
     <!-- Menu Lateral (Sidebar) - ADICIONADO ID AQUI -->
     <nav class="sidebar" id="mySidebar">
+        <!-- BOTÃO DE FECHAR (X) INCLUÍDO AQUI -->
         <button class="btn-fechar-mobile" id="btnFechar">&times;</button>
+        
         <ul>
-            <a href="/">
+            <a href="/" class="menu-link">
                 <li>
-                    <span class="icon"><i class="fas fa-arrow-left"></i></span>
-                    <span class="text">Voltar</span>
+                    <span class="icon"><i class="fas fa-house"></i></span>
+                    <span class="text">Início</span>
                 </li>
             </a>
 
-            <a href="/certificados">
+            <a href="/#metodologia" class="menu-link">
+                <li>
+                    <span class="icon"><i class="fas fa-gears"></i></span>
+                    <span class="text">Metodologia</span>
+                </li>
+            </a>
+
+            <a href="/#servicos" class="menu-link">
+                <li>
+                    <span class="icon"><i class="fas fa-briefcase"></i></span>
+                    <span class="text">Serviços</span>
+                </li>
+            </a>
+            
+            <a href="/certificados" class="menu-link">
                 <li>
                     <span class="icon"><i class="fas fa-graduation-cap"></i></span>
                     <span class="text">Certificações</span>
                 </li>
             </a>
-
+            
+            <a href="/links" class="menu-link">
+                <li>
+                    <span class="icon"><i class="fas fa-link"></i></span>
+                    <span class="text">Meus Links</span>
+                </li>
+            </a>
+            
             <a href="{{ whatsapp }}" target="_blank">
                 <li>
                     <span class="icon"><i class="fab fa-whatsapp"></i></span>
