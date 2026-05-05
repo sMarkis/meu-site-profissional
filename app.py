@@ -47,7 +47,7 @@ def links():
             "titulo": "Linkedin", 
             "info": "Conexões profissionais e histórico detalhado de carreira.",
             "icone": "fab fa-linkedin",
-            "url": "https://linkedin.com/in/seu-perfil"
+            "url": "https://www.linkedin.com/in/andre-luis-marques-de-souza-b5a498179/"
         },
         
     ]
